@@ -1,3 +1,4 @@
 language: python
 python: 3.6
+install: wget http://sh.rustup.rs -O rustup.sh
 script: python3 script.py

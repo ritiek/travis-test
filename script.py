@@ -1,5 +1,4 @@
 import datetime
-import urllib.request
 import subprocess
 import os
 
@@ -41,10 +40,10 @@ def set_default_toolchain(toolchain):
 mid_date = middle_date(start_date, end_date)
 toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
 
-urllib.request.urlretrieve('http://sh.rustup.rs', 'rustup.sh')
 download = subprocess.Popen(['bash', 'rustup.sh', '--default-toolchain', toolchain],
                             stdin=subprocess.PIPE)
 download.stdin.write(b'y\r')
+download.wait()
 
 while True:
     if output_has_keywords(cmd, keywords):

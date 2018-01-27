@@ -1,4 +1,5 @@
 import datetime
+import urllib.request
 import subprocess
 import os
 
@@ -37,13 +38,13 @@ def set_default_toolchain(toolchain):
     return output.stdout
 
 
+mid_date = middle_date(start_date, end_date)
+toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
+
+urllib.request.urlretrieve('http://sh.rustup.rs', 'rustup.sh')
+subprocess.run(['bash', 'rustup.sh', '--default-toolchain', toolchain])
+
 while True:
-    mid_date = middle_date(start_date, end_date)
-    toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
-
-    print('\nSetting defaults: ' + toolchain)
-    set_default_toolchain(toolchain)
-
     if output_has_keywords(cmd, keywords):
         end_date = mid_date
     else:
@@ -51,3 +52,10 @@ while True:
 
     if last_date == mid_date:
         break
+
+    mid_date = middle_date(start_date, end_date)
+    toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
+
+    print('\nSetting defaults: ' + toolchain)
+    set_default_toolchain(toolchain)
+

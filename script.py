@@ -1,7 +1,7 @@
 import datetime
 import subprocess
 import os
-import time
+import sys
 
 keywords = 'Function return type'
 start_date = '2017-09-02'
@@ -51,7 +51,7 @@ while True:
         start_date = mid_date
 
     if last_date == mid_date:
-        break
+        sys.exit(0)
 
     mid_date = middle_date(start_date, end_date)
     toolchain = '{0}-{1}'.format(toolchain_type, mid_date)

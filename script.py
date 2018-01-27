@@ -42,7 +42,7 @@ toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
 
 download = subprocess.Popen(['bash', 'rustup.sh', '--default-toolchain', toolchain],
                             stdin=subprocess.PIPE)
-download.stdin.write(b'y\r')
+download.stdin.write(b'1\r')
 download.wait()
 
 while True:

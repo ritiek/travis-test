@@ -1,2 +1,6 @@
-language: rust
+matrix:
+    include:
+        - language: rust
+        - language: python
+install: cargo install rustup
 script: python3 script.py

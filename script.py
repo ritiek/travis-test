@@ -41,7 +41,8 @@ def set_default_toolchain(toolchain):
 mid_date = middle_date(start_date, end_date)
 toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
 
-download = subprocess.run(['bash', 'rustup.sh', '-y', '--default-toolchain', toolchain])
+subprocess.run(['bash', 'rustup.sh', '-y', '--default-toolchain', toolchain])
+subprocess.run(['which', 'rustc'])
 
 while True:
     if output_has_keywords(cmd, keywords):

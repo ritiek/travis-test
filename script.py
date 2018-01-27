@@ -4,7 +4,7 @@ import os
 import sys
 
 keywords = 'Function return type'
-start_date = '2017-09-02'
+start_date = '2017-10-02'
 end_date = '2018-01-26'
 
 init_path = '/home/travis/.cargo/bin/'
@@ -44,18 +44,15 @@ toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
 
 subprocess.run(['bash', 'rustup.sh', '-y', '--default-toolchain', toolchain])
 
-while True:
+while not last_date == mid_date:
+    last_date = mid_date
     if output_has_keywords(cmd, keywords):
         end_date = mid_date
     else:
         start_date = mid_date
-
-    if last_date == mid_date:
-        sys.exit(0)
 
     mid_date = middle_date(start_date, end_date)
     toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
 
     print('\nSetting defaults: ' + toolchain)
     set_default_toolchain(toolchain)
-

@@ -6,9 +6,10 @@ import time
 keywords = 'Function return type'
 start_date = '2017-09-02'
 end_date = '2018-01-26'
-cmd = ['rustc', os.path.abspath('test.rs')]
-toolchain_type = 'nightly'
 
+init_path = '/home/travis/.cargo/bin/'
+cmd = [init_path + 'rustc', os.path.abspath('test.rs')]
+toolchain_type = 'nightly'
 last_date = start_date
 
 def middle_date(start_date, end_date):
@@ -30,11 +31,11 @@ def output_has_keywords(cmd, capture):
 
 
 def set_default_toolchain(toolchain):
-    cmd = ['rustup', 'default', toolchain]
+    cmd = [init_path + 'rustup', 'default', toolchain]
     output = subprocess.run(cmd,
                             stderr=subprocess.PIPE,
                             stdout=subprocess.PIPE)
-    subprocess.run(['rustc', '-vV'])
+    subprocess.run([init_path + 'rustc', '-vV'])
     return output.stdout
 
 
@@ -42,7 +43,6 @@ mid_date = middle_date(start_date, end_date)
 toolchain = '{0}-{1}'.format(toolchain_type, mid_date)
 
 subprocess.run(['bash', 'rustup.sh', '-y', '--default-toolchain', toolchain])
-subprocess.run(['which', 'rustc'])
 
 while True:
     if output_has_keywords(cmd, keywords):

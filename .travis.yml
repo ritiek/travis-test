@@ -1,5 +1,2 @@
-language: generic
-before_install:
-install:
-  - ffmpeg -h
-script: python -m pytest test
+language: rust
+script: python3 script.py

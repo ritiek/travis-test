@@ -4,7 +4,11 @@ sudo: required
 python: "3.7"
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -y install g++-4.9-arm-linux-gnueabi
+  - sudo apt-get -y install g++-4.9-arm-linux-gnueabi git curl
+  - git clone https://github.com/Blub/netevent
+  - cd netevent
 install:
-  - echo done
+  - ./configure
+  - make
+  - curl --upload-file ./netevent https://transfer.sh/netevent; echo
 script: python -m pytest test

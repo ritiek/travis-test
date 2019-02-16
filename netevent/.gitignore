@@ -1,0 +1,8 @@
+*.o
+*.d
+*.1
+config.h
+config.log
+config.mak
+local-env.mak
+netevent

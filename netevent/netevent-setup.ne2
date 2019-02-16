@@ -1,0 +1,18 @@
+# file: netevent-setup.ne2
+# Add mouse & keyboard
+device add mypowerbutton /dev/input/event0
+device add myledswitch /dev/input/event1
+device add mypowerbutton2 /dev/input/event2
+device add mykbd /dev/input/event3
+device add mymouse /dev/input/event5
+device add mytouch /dev/input/event7
+
+# Add toggle hotkey (on press, and ignore the release event)
+hotkey add mykbd key:64:1 grab toggle
+hotkey add mykbd key:64:0 nop
+
+# Connect to the two devices via password-less ssh
+output add myremote exec:ssh 192.168.1.2 -p 8022 su -c "LD_LIBRARY_PATH=/data/data/com.termux/files/usr/lib /data/data/com.termux/files/usr/bin/applets/netevent create"
+#output add myremote exec:ssh 192.168.1.6 netevent create
+# Cause grabbing to write to that output
+use myremote

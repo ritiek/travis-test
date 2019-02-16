@@ -1,0 +1,6 @@
+* Perhaps a per-input-device NETEVENT_GRABBING env var?
+  Either multiple vars or one with a space separated `name=0|1` list...
+* Some TODOs found in the code? There should be at least one...
+* a) INotify to listen to devices being created?
+  b) Use systemd service files to tell the daemon about new devices?
+* Broadcast a keep-alive/ping packet every some seconds.
